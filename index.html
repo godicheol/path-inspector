@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>path-inspector</title>
+    <style>
+        .line{margin: 1rem 0; border-bottom: 1px solid;}
+    </style>
+</head>
+
+<body>
+    <h1>path-inspector</h1>
+
+    URL: <input id="input-1" type="text" value="https://www.google.com?a=test1&b=test2&c=test3">
+
+    <div class="line"></div>
+
+    Result:
+
+    <pre id="result-1"></pre>
+
+    <script src="dist/path-inspector.js"></script>
+    <script>
+        var inputElement = document.getElementById("input-1");
+        var resultElement = document.getElementById("result-1");
+
+        function readPath(e) {
+            var str = inputElement.value;
+            resultElement.innerHTML = "";
+
+            resultElement.innerHTML = JSON.stringify(pathInspector.read(str), null, 2);
+        }
+
+        inputElement.addEventListener("input", readPath);
+
+        readPath();
+
+    </script>
+</body>
+
+</html>
